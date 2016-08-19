@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ShekharReddy4/sso-demo#readme",
   "dependencies": {
+    "atlas-node-multipass": "^1.0.1",
     "ejs": "^2.5.1",
     "express": "^4.14.0"
   }
