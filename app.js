@@ -39,6 +39,13 @@ passport.deserializeUser(function (id, done) {
     done(null, {id: id, name: id});
 });
 
+function ensureAuthenticated(req,res,next){
+    if (req.isAuthenticated()){
+        next();
+    }else{
+        res.sendStatus(403);
+    }
+}
 //routes
 app.get('/', function (req, res) {
     res.render('index',{
@@ -58,6 +65,14 @@ app.post('/login',passport.authenticate('local'), function(req, res) {
 app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');   
+});
+
+app.get('/api/data',ensureAuthenticated, function (req, res) {
+    res.json([
+        {value: 'foo'},
+        {value: 'bar'},
+        {value: 'baz'}
+    ])
 });
 
 var port = process.env.PORT || 8000;
