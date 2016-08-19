@@ -1,0 +1,27 @@
+{
+  "name": "sso-demo",
+  "version": "1.0.0",
+  "description": "a demo SSO authentication durting GSoC 16",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShekharReddy4/sso-demo.git"
+  },
+  "keywords": [
+    "SSO",
+    "OpenMRSID"
+  ],
+  "author": "shekharreddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShekharReddy4/sso-demo/issues"
+  },
+  "homepage": "https://github.com/ShekharReddy4/sso-demo#readme",
+  "dependencies": {
+    "ejs": "^2.5.1",
+    "express": "^4.14.0"
+  }
+}
