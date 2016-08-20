@@ -22,7 +22,7 @@ app.use(expressSession(
 app.set('view engine','ejs');
 
 function ensureAuthenticated(req,res,next){
-    if (req.session.authenticated){
+    if (req.session.authenticated && req.session && req.session.user){
         next();
     }else{
         res.sendStatus(403);
@@ -33,7 +33,7 @@ function ensureAuthenticated(req,res,next){
 app.get('/', function (req, res) {
     res.render('index',{
         isAuthenticated: req.session.authenticated,
-        user: req.user
+        user: req.session.user
     });
 });
 
@@ -47,6 +47,7 @@ app.get('/auth/multipass/callback', function (req, res) {
     var obj = multipass.decode(token);
     //console.log(obj);
     req.session.authenticated = true;
+    req.session.user = obj;
     res.redirect('/');
 });
 

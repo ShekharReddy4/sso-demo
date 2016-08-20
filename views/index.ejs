@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Passport</title>
+    <title>SSO-DEMO</title>
 </head>
 <body>
     <% if(!isAuthenticated) {%>
         <a href="/login"> Log in here</a>
     <%} else {%>
-        Hello!
+        Hello <%= user.uid%>!
         <a href="/logout"> Logout</a>
     <%}%>
 </body>
