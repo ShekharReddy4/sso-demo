@@ -3,11 +3,16 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
+var Multipass = require('atlas-node-multipass');
+var apikey = '1234567890abcdef';
+var sitekey = 'localhost';
+var multipass = new Multipass(apikey, sitekey);
+
 var passport = require('passport');
 var passportLocal = require('passport-local');
 
 var app = express();
- 
+
 app.set('view engine','ejs');
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -46,6 +51,7 @@ function ensureAuthenticated(req,res,next){
         res.sendStatus(403);
     }
 }
+
 //routes
 app.get('/', function (req, res) {
     res.render('index',{
@@ -55,12 +61,22 @@ app.get('/', function (req, res) {
 });
 
 app.get('/login', function(req, res){
-  res.render('login');
+    res.redirect('http://localhost:8080/') ;
+    //res.render('login');
 });
 
-app.post('/login',passport.authenticate('local'), function(req, res) {
+/*app.post('/login',passport.authenticate('local'), function(req, res) {
     res.redirect('/');
 });
+*/
+app.get('/auth/multipass/callback', passport.authenticate('local'), function (req, res) {
+
+    var token = req.query.multipass;
+    var obj = multipass.decode(token);
+    //console.log(obj);
+    res.redirect('/');
+});
+
 
 app.get('/logout', function (req, res) {
     req.logout();
