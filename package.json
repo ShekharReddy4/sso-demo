@@ -1,7 +1,7 @@
 {
   "name": "sso-demo",
   "version": "1.0.0",
-  "description": "a demo SSO authentication durting GSoC 16",
+  "description": "a demo SSO authentication during GSoC 16",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
